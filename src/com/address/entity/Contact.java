@@ -1,14 +1,28 @@
 package com.address.entity;
 
 public class Contact {
-	private String firstName;	
-	private String lastName;
-	private String address;
-	private String city;
-	private String state;
-	private int zip;	
-	private int phoneNumber;
-	private String email;
+	String firstName;	
+	String lastName;
+	String address;
+	String city;
+	String state;
+	long zip;	
+	long phoneNumber;
+	String email;
+	
+	public Contact(String firstName, String lastName, String address, String city, String state, long zip,
+			long phoneNumber, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+
 
 	public String getFirstName() {
 		return firstName;
@@ -40,16 +54,16 @@ public class Contact {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getZip() {
+	public long getZip() {
 		return zip;
 	}
-	public void setZip(int zip) {
+	public void setZip(long zip) {
 		this.zip = zip;
 	}
-	public int getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	public String getEmail() {
