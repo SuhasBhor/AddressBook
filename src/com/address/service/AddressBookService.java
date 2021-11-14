@@ -143,9 +143,21 @@ public class AddressBookService {
 		}
 	}
 	
-	/*public static void main(String[] args) {
-		System.out.println("------Welcome TO AddressBook------");
-		AddressBookService address = new AddressBookService();
+	public void delete() {
+		System.out.print("Enter first name to delete contact:- ");
+		String deleteByName = scan.next();
 		
-	}*/
+		for(int i = 0; i < contactBook.size(); i++) {
+			String Finding_name = contactBook.get(i).getFirstName();
+			
+			if(deleteByName.equals(Finding_name)) {
+				contactBook.remove(i);
+				System.out.println("\nSelected contact deleted successfully.");
+				break;
+			}
+			else {
+				continue;
+			}
+		}
+	}
 }
