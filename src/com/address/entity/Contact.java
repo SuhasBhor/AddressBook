@@ -1,7 +1,7 @@
 package com.address.entity;
 
 public class Contact {
-	String firstName;	
+	public String firstName;	
 	String lastName;
 	String address;
 	String city;
