@@ -62,10 +62,10 @@ public class AddressBookService {
 	}
 	
 	public void edit() {
-		System.out.println("Enter First Name Of Contact Person You Want To Edit: ");
-		String name = scan.next();
+		System.out.println("Enter Email Of Contact Person You Want To Edit: ");
+		String email = scan.next();
 		for (Contact person : contactBook) {
-			if(name.equals(person.firstName)) {
+			if(email.equals(person.email)) {
 				System.out.println("Select Option: "
 						+ "1.firstName;"
 						+ "	2.lastName;"
@@ -73,8 +73,7 @@ public class AddressBookService {
 						+ "	4.city;"
 						+ "	5.state;"
 						+ "	6.zip;"
-						+ "	7.phoneNumber;"
-						+ "	8.email;");
+						+ "	7.phoneNumber;");
 				int ch = scan.nextInt();
 				
 				switch(ch) {
@@ -121,21 +120,14 @@ public class AddressBookService {
 					break;
 					
 				case 7:
-					System.out.print("Enter new phonr number :- ");
+					System.out.print("Enter new phone number :- ");
 					long newPhone = scan.nextLong();
 					person.setPhoneNumber(newPhone);
 					System.out.println("Phone number is updated.");
 					break;
-					
-				case 8:
-					System.out.print("Enter new email :- ");
-					String newEmail = scan.next();
-					person.setEmail(newEmail);
-					System.out.println("Email is updated.");
-					break;
-					
+	
 				default:
-					System.out.println("Please enter a number between 1 to 8 only...");	
+					System.out.println("Please Enter Valid Choice!!!");	
 				}
 			}else {
 				continue;
@@ -144,19 +136,36 @@ public class AddressBookService {
 	}
 	
 	public void delete() {
-		System.out.print("Enter first name to delete contact:- ");
-		String deleteByName = scan.next();
+		System.out.print("Enter Email to Delete Contact:- ");
+		String deleteByEmail = scan.next();
 		
 		for(int i = 0; i < contactBook.size(); i++) {
-			String Finding_name = contactBook.get(i).getFirstName();
+			String Finding_email = contactBook.get(i).getEmail();
 			
-			if(deleteByName.equals(Finding_name)) {
+			if(deleteByEmail.equals(Finding_email)) {
 				contactBook.remove(i);
 				System.out.println("\nSelected contact deleted successfully.");
 				break;
 			}
 			else {
 				continue;
+			}
+		}
+	}
+	
+	public void find() {
+		System.out.print("Enter Email to Find Contact:- ");
+		String findByEmail = scan.next();
+		
+		for(int i = 0; i < contactBook.size(); i++) {
+			String Finding_Email = contactBook.get(i).getEmail();
+			
+			if(findByEmail.equals(Finding_Email)) {
+				System.out.println("\n---Contatct Found---.");
+				break;
+			}
+			else {
+				System.out.println("\n---Contact Not Found---\n");
 			}
 		}
 	}

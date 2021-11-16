@@ -2,13 +2,13 @@ package com.address.entity;
 
 public class Contact {
 	public String firstName;	
-	String lastName;
-	String address;
-	String city;
-	String state;
-	long zip;	
-	long phoneNumber;
-	String email;
+	public String lastName;
+	public String address;
+	public String city;
+	public String state;
+	public long zip;	
+	public long phoneNumber;
+	public String email;
 	
 	public Contact(String firstName, String lastName, String address, String city, String state, long zip,
 			long phoneNumber, String email) {
