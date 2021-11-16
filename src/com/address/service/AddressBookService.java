@@ -3,6 +3,7 @@ package com.address.service;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.address.entity.AddressBookList;
 import com.address.entity.Contact;
 
 public class AddressBookService {
@@ -18,6 +19,7 @@ public class AddressBookService {
 	
 	Scanner scan = new Scanner(System.in);
 	ArrayList<Contact> contactBook = new ArrayList<>();
+	ArrayList<AddressBookList> AddressBookNameList = new ArrayList<>();
 	
 	public void getContact() {
 		System.out.println("How Many Contacts You Want To Add: ");
@@ -167,6 +169,23 @@ public class AddressBookService {
 			else {
 				System.out.println("\n---Contact Not Found---\n");
 			}
+		}
+	}
+	
+	public void newAddressBook() {
+		System.out.println("Enter Address Book Name: ");
+		String bookName = scan.next();
+		
+		AddressBookList obj = new AddressBookList(bookName);
+		AddressBookNameList.add(obj);
+		
+		System.out.println("New Address Book Is Added: "+obj);
+	}
+	
+	public void displayAddressBook() {
+		System.out.println("------Address Book List------");
+		for (AddressBookList addressBookName : AddressBookNameList) {
+			System.out.println(addressBookName.toString());
 		}
 	}
 }
