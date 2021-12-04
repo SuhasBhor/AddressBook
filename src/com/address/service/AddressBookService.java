@@ -8,130 +8,74 @@ import com.address.entity.Contact;
 
 public class AddressBookService {
 	
-	String firstName;
-	String lastName;
-	String address;
-	String city;
-	String state;
-	long zip;
-	long phoneNumber;
-	String email;
-	
+	String firstName, lastName, address, city, state,email; 
+	long zip, phoneNumber;
 	Scanner scan = new Scanner(System.in);
+	Contact contact;
 	ArrayList<Contact> contactBook = new ArrayList<>();
 	ArrayList<AddressBookList> AddressBookNameList = new ArrayList<>();
 	
 	public void getContact() {
 		System.out.println("How Many Contacts You Want To Add: ");
 		int n = scan.nextInt();
-		for(int i=0;i<n;i++) {
-			
-		System.out.print(" Please enter the first name: ");
-		firstName = scan.next();
-		
-		System.out.print(" Please enter the last name: ");
-		lastName = scan.next();
-		
-		System.out.print(" Please enter the address: ");
-		address = scan.next();
-		
-		System.out.print(" Please enter the city: ");
-		city = scan.next();
-		
-		System.out.print(" Please enter the state: ");
-		state = scan.next();
-		
-		System.out.print(" Please enter the zip: ");
-		zip = scan.nextLong();
-		
-		System.out.print(" Please enter the phone number: ");
-		phoneNumber = scan.nextLong();
-		
-		System.out.print(" Please enter the email: ");
-		email = scan.next();
-		System.out.println("\n");
-		
-		Contact contact = new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
+		for(int i=0;i<n;i++) {	
+		contact = new Contact(firstName,lastName,address,city,state,zip,phoneNumber,email);
 		contactBook.add(contact);
 		}
 	}
 
 	public void display() {
 		System.out.println("------Contacts in Addrees Book------");
-		for (Contact person : contactBook) {
-			System.out.println(person.toString());
+		for (Contact contact : contactBook) {
+			System.out.println(contact.toString());
 		}
 	}
 	
 	public void edit() {
-		System.out.println("Enter Email Of Contact Person You Want To Edit: ");
+		System.out.println("Enter Email Of Contact You Want To Edit: ");
 		String email = scan.next();
-		for (Contact person : contactBook) {
-			if(email.equals(person.email)) {
-				System.out.println("Select Option: "
-						+ "1.firstName;"
-						+ "	2.lastName;"
-						+ "	3.address;"
-						+ "	4.city;"
-						+ "	5.state;"
-						+ "	6.zip;"
-						+ "	7.phoneNumber;");
+		for (Contact contact : contactBook) {
+			if(email.equals(contact.email)) {
+				System.out.println("Select Option: \n1.FirstName\n2.LastName\n3.Address\n4.City\n5.State\n6.ZipCode\n7.PhoneNumber\n8Email;");
 				int ch = scan.nextInt();
 				
 				switch(ch) {
 				case 1:
-					System.out.print("Enter new first name :- ");
-					String newFirstName = scan.next();
-					person.setFirstName(newFirstName);
-					System.out.println("First name is updated.");
+					contact.getNewFirstName();
 					break;
 					
 				case 2:
-					System.out.print("Enter new last name :- ");
-					String newLastName = scan.next();
-					person.setLastName(newLastName);
-					System.out.println("Last name is updated.");
+					contact.getNewLastName();
 					break;
 					
 				case 3:
-					System.out.print("Enter new Address :- ");
-					String newAddress = scan.next();
-					person.setAddress(newAddress);
-					System.out.println("Address is updated.");
+					contact.getNewAddress();
 					break;
 					
 				case 4:
-					System.out.print("Enter new city name :- ");
-					String newCity = scan.next();
-					person.setCity(newCity);
-					System.out.println("City is updated.");
+					contact.getNewCity();
 					break;
 					
 				case 5:
-					System.out.print("Enter new state name :- ");
-					String newState = scan.next();
-					person.setState(newState);
-					System.out.println("State is updated.");
+					contact.getNewState();
 					break;
 					
 				case 6:
-					System.out.print("Enter new Zip code :- ");
-					int newZip = scan.nextInt();
-					person.setZip(newZip);
-					System.out.println("Zip code is updated.");
+					contact.getNewZip();
 					break;
 					
 				case 7:
-					System.out.print("Enter new phone number :- ");
-					long newPhone = scan.nextLong();
-					person.setPhoneNumber(newPhone);
-					System.out.println("Phone number is updated.");
+					contact.getNewPhoneNumber();
 					break;
-	
+				case 8:
+					contact.getNewEmail();
+					break;
+					
 				default:
 					System.out.println("Please Enter Valid Choice!!!");	
 				}
 			}else {
+				System.out.println("The Email You Entered Is Wrong Please Provide Right One");
 				continue;
 			}
 		}
@@ -150,6 +94,7 @@ public class AddressBookService {
 				break;
 			}
 			else {
+				System.out.println("The Email You Entered Is Wrong Please Provide Right One");
 				continue;
 			}
 		}
@@ -163,7 +108,7 @@ public class AddressBookService {
 			String Finding_Email = contactBook.get(i).getEmail();
 			
 			if(findByEmail.equals(Finding_Email)) {
-				System.out.println("\n---Contatct Found---.");
+				System.out.println("\n---Contact Found---.");
 				break;
 			}
 			else {
