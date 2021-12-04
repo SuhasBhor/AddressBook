@@ -1,5 +1,7 @@
 package com.address.entity;
 
+import java.util.Scanner;
+
 public class Contact {
 	public String firstName;	
 	public String lastName;
@@ -10,17 +12,25 @@ public class Contact {
 	public long phoneNumber;
 	public String email;
 	
-	public Contact(String firstName, String lastName, String address, String city, String state, long zip,
-			long phoneNumber, String email) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
+	Scanner scan = new Scanner(System.in);
+	
+	public Contact(String firstName, String lastName, String address, String city, String state, long zip,long phoneNumber, String email) {
+		System.out.print("Enter Your First Name: ");
+		this.firstName = scan.nextLine();
+		System.out.print("Enter Your Last Name: ");
+		this.lastName = scan.nextLine();
+		System.out.print("Enter Your Address: ");
+		this.address = scan.nextLine();
+		System.out.print("Enter Your City Name: ");
+		this.city = scan.nextLine();
+		System.out.print("Enter Your State: ");
+		this.state = scan.nextLine();
+		System.out.print("Enter Your Email ID: ");
+		this.email = scan.nextLine();
+		System.out.print("Enter Your Zip-Code: ");
+		this.zip = scan.nextLong();
+		System.out.print("Enter Your Phone Number: ");
+		this.phoneNumber = scan.nextLong();		
 	}
 
 
@@ -72,15 +82,71 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
+	public void getNewFirstName() {
+		System.out.print("Enter Your New Name: ");
+		String newFirstName = scan.next();
+		setFirstName(newFirstName);
+		System.out.println("First Name Updated To "+newFirstName);
+	}
+	
+	public void getNewLastName() {
+		System.out.print("Enter Your New Last Name: ");
+		String newLastName = scan.next();
+		setLastName(newLastName);
+		System.out.println("Last Name Updated To "+newLastName);
+	}
+	
+	public void getNewAddress() {
+		System.out.print("Enter Your New Addresss: ");
+		String newAddress = scan.next();
+		setAddress(newAddress);
+		System.out.println("Address Updated To "+newAddress);
+	}
+	
+	public void getNewCity() {
+		System.out.print("Enter Your New City Name: ");
+		String newCity = scan.next();
+		setCity(newCity);
+		System.out.println("City Updated To "+newCity);
+	}
+	
+	public void getNewState() {
+		System.out.print("Enter New State: ");
+		String newState = scan.next();
+		setState(newState);
+		System.out.println("State Updated To "+newState);
+	}
+	
+	public void getNewZip() {
+		System.out.print("Enter Your New ZipCode: ");
+		int newZip = scan.nextInt();
+		setZip(newZip);
+		System.out.println("ZipCode Updated To "+newZip);
+	}
+	
+	public void getNewPhoneNumber() {
+		System.out.print("Enter Your New Phone Number: ");
+		long newPhone = scan.nextLong();
+		setPhoneNumber(newPhone);
+		System.out.println("Phone Updated To "+newPhone);
+	}
+	
+	public void getNewEmail() {
+		System.out.print("Enter New Email: ");
+		long newEmail = scan.nextLong();
+	setPhoneNumber(newEmail);
+		System.out.println("Email Updated To "+newEmail);
+	}
 	@Override
 	public String toString() {
-		System.out.println("\n ==== " + firstName + " " + lastName + " ====");
+		System.out.println("Name: " +this.firstName); 
+		System.out.println("LastName: "+this.lastName);
 		System.out.println(" Address: " + this.address);
 		System.out.println(" City: " + this.city);
 		System.out.println(" State: " + this.state);
-		System.out.println(" Zip: " + this.zip);
-		System.out.println(" Phone number: " + this.phoneNumber);
+		System.out.println(" ZipCode: " + this.zip);
+		System.out.println(" Phone Number: " + this.phoneNumber);
 		System.out.println(" Email: " + this.email);
 		return "";
 	}
