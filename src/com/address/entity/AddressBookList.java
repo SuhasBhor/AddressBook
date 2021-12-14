@@ -1,11 +1,14 @@
 package com.address.entity;
 
+import java.util.ArrayList;
+
 public class AddressBookList {
-	String bookName;
+	public String bookName;
+	public ArrayList<Contact> contactDetails;
 
 	public AddressBookList(String bookName) {
-		super();
 		this.bookName = bookName;
+		this.contactDetails = new ArrayList<Contact>();
 	}
 
 	public String getBookName() {
@@ -18,8 +21,7 @@ public class AddressBookList {
 
 	@Override
 	public String toString() {
-		return "AddressBook Name: " + bookName + "]";
+		return "AddressBook Name: " + bookName + "\ncontacts:-" + contactDetails;
 	}
-	
-	
+
 }
