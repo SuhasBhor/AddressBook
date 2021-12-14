@@ -3,12 +3,9 @@ package com.address.service;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
+
 
 import com.address.entity.AddressBookList;
 import com.address.entity.Contact;
@@ -19,7 +16,8 @@ public class AddressBookService {
 	Contact contact;
 	// ArrayList<Contact> contactBook = new ArrayList<>();
 	ArrayList<AddressBookList> AddressBookNameList = new ArrayList<>();
-
+	
+	//Add Method To Add Contact in ArrayList 
 	public void getContact() {
 		if (AddressBookNameList.isEmpty()) {
 			System.out.println("\n---Add Address Book First---\n");
@@ -59,8 +57,6 @@ public class AddressBookService {
 				contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
 				
 				if(checkDuplicate(book,firstName)) {
-				//AddressBookNameList.stream().filter(find -> find.bookName.contains(book))
-				//		.forEach(addressBook -> addressBook.contactDetails.add(contact));
 					for (AddressBookList addressBook : AddressBookNameList) {
 						if (addressBook.bookName.contains(book)) {
 							addressBook.contactDetails.add(contact);
@@ -78,6 +74,7 @@ public class AddressBookService {
 		}
 	}
 	
+	//Check for Duplicate Contact
 	public boolean checkDuplicate(String book , String firstName) {
 		for (AddressBookList addressBook : AddressBookNameList) {
 			if (book.equals(addressBook.bookName)) {
@@ -91,6 +88,7 @@ public class AddressBookService {
 		return true;
 	}
 	
+	//edit contact of Particular AddressBook
 	public void edit() {
 		System.out.println("Which AddressBook's Contact You Want To Edit: ");
 		String book = scan.nextLine();
@@ -148,7 +146,10 @@ public class AddressBookService {
 			}
 		}
 	}
-
+	
+	/*Delete Contact from AddressBook 
+		by searching with email in addressbook 
+	*/
 	public void delete() {
 		System.out.println("Which AddressBook's Contact You Want To Delete: ");
 		String book = scan.nextLine();
@@ -170,7 +171,10 @@ public class AddressBookService {
 			}
 		}
 	}
-
+	
+	/*find Contact from AddressBook 
+	by searching with email in addressbook 
+*/
 	public void find() {
 		System.out.println("Which AddressBook's Contact You Want To Find: ");
 		String book = scan.nextLine();
@@ -212,6 +216,22 @@ public class AddressBookService {
 		System.out.println(" ");
 	}
 	
+	//Count Contact In particular City
+	public void countByCity() {
+		System.out.println("Enter City Name: ");
+		String cityName = scan.next();
+		int count = 0;
+		for (AddressBookList addressBookList : AddressBookNameList) {
+			for(Contact contact : addressBookList.contactDetails) {
+				if(cityName.equals(contact.city)) {
+					count++;
+				}
+			}
+		}
+		System.out.println("\nTotal Contact In State "+cityName+ " Are: "+count);
+	}
+	
+	
 	//Search Contact By State 
 	public void searchByState() {
 		System.out.println("Enter State Whose Contact You Want: ");
@@ -233,6 +253,21 @@ public class AddressBookService {
 		System.out.println(" ");
 	}
 	
+	//Count Contact In particular State
+	public void countByState() {
+		System.out.println("Enter City Name: ");
+		String stateName = scan.next();
+		int count = 0;
+		for (AddressBookList addressBookList : AddressBookNameList) {
+			for(Contact contact : addressBookList.contactDetails) {
+				if(stateName.equals(contact.state)) {
+					count++;
+				}
+			}
+		}
+		System.out.println("\nTotal Contact In State "+stateName+ " Are: "+count);
+	}
+	
 	//find AddressBook in ArrayList of AddressBook
 	public boolean findAddressBook(String bookName) {
 		if (AddressBookNameList.isEmpty()) {
@@ -246,7 +281,8 @@ public class AddressBookService {
 
 		return true;
 	}
-
+	
+	//Add AddressBook in Arraylist of AddresBook
 	public void newAddressBook() {
 		System.out.println("Enter Address Book Name: ");
 		String bookName = scan.next();
@@ -260,7 +296,8 @@ public class AddressBookService {
 
 		System.out.println("New Address Book Is Added: " + obj);
 	}
-
+	
+	//Display AddressBook
 	public void displayAddressBook() {
 		System.out.println("------Address Book List------");
 		for (AddressBookList addressBookName : AddressBookNameList) {
