@@ -9,7 +9,7 @@ public class AddressBookMain {
 		AddressBookService address = new AddressBookService();
 
 		while (true) {
-			System.out.println("1.Add\n2.Edit\n3.Delete\n4.Find\n5.Add AddressBook\n6.Display AddressBook List");
+			System.out.println("1.Add\n2.Edit\n3.Delete\n4.Find\n5.Add AddressBook\n6.Display AddressBook List\n7.Search Contact By City\n8.Search Contact By State");
 			System.out.print("Select Your Option: ");
 			int option = scan.nextInt();
 
@@ -32,8 +32,14 @@ public class AddressBookMain {
 			case 6:
 				address.displayAddressBook();
 				break;
+			case 7:
+				address.searchByCity();
+				break;
+			case 8:
+				address.searchByState();
+				break;
 			default:
-				System.out.println("Enter Option Between 1 To 6");
+				System.out.println("Enter Option Between 1 To 8");
 			}
 		}
 	}

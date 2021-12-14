@@ -173,16 +173,42 @@ public class AddressBookService {
 		String book = scan.nextLine();
 
 		System.out.println("Enter Email Of Contact You Want To Find: ");
-		String deleteByEmail = scan.next();
+		String findByEmail = scan.next();
 		for (AddressBookList addressBook : AddressBookNameList) {
 			if (book.equals(addressBook.bookName)) {
 				for (Contact contact : addressBook.contactDetails) {
-					if (deleteByEmail.equals(contact.email)) {
+					if (findByEmail.equals(contact.email)) {
 						System.out.println("\n---Contact Found---.");
 						break;
 					} else {
 						System.out.println("\n---Contact Not Found---\n");
 					}
+				}
+			}
+		}
+	}
+	
+	public void searchByCity() {
+		System.out.println("Enter City Name Whose Contact You Want: ");
+		String cityName = scan.next();
+		
+		for (AddressBookList addressBookList : AddressBookNameList) {
+			for(Contact contact : addressBookList.contactDetails) {
+				if(cityName.equals(contact.city)) {
+					System.out.println("Contact In City "+cityName+ " Are "+contact.firstName);
+				}
+			}
+		}
+	}
+	
+	public void searchByState() {
+		System.out.println("Enter State Whose Contact You Want: ");
+		String stateName = scan.next();
+		
+		for (AddressBookList addressBookList : AddressBookNameList) {
+			for(Contact contact : addressBookList.contactDetails) {
+				if(stateName.equals(contact.state)) {
+					System.out.println("Contact In State "+stateName+ " Are "+contact.firstName);
 				}
 			}
 		}
