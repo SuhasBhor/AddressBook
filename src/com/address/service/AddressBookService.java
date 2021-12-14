@@ -1,7 +1,10 @@
 package com.address.service;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -188,32 +191,49 @@ public class AddressBookService {
 		}
 	}
 	
+	//Search Contact By City Name
 	public void searchByCity() {
 		System.out.println("Enter City Name Whose Contact You Want: ");
 		String cityName = scan.next();
 		
+		//Creating A Dictionary of City And Name
+		Dictionary cityDictionary = new Hashtable<>();
 		for (AddressBookList addressBookList : AddressBookNameList) {
 			for(Contact contact : addressBookList.contactDetails) {
 				if(cityName.equals(contact.city)) {
-					System.out.println("Contact In City "+cityName+ " Are "+contact.firstName);
+					cityDictionary.put(contact.firstName, cityName);
 				}
 			}
 		}
+		System.out.println("Contact In City "+cityName);
+		for(Enumeration i = cityDictionary.keys();i.hasMoreElements();) {
+			System.out.println(i.nextElement());
+		}
+		System.out.println(" ");
 	}
 	
+	//Search Contact By State 
 	public void searchByState() {
 		System.out.println("Enter State Whose Contact You Want: ");
 		String stateName = scan.next();
 		
+		//creating Dictionary of State and Name
+		Dictionary stateDictionary = new Hashtable();
 		for (AddressBookList addressBookList : AddressBookNameList) {
 			for(Contact contact : addressBookList.contactDetails) {
 				if(stateName.equals(contact.state)) {
-					System.out.println("Contact In State "+stateName+ " Are "+contact.firstName);
+					stateDictionary.put(contact.firstName, stateName);
 				}
 			}
 		}
+		System.out.println("Contact In State "+stateName);
+		for(Enumeration i = stateDictionary.keys();i.hasMoreElements();) {
+			System.out.println(i.nextElement());
+		}
+		System.out.println(" ");
 	}
-
+	
+	//find AddressBook in ArrayList of AddressBook
 	public boolean findAddressBook(String bookName) {
 		if (AddressBookNameList.isEmpty()) {
 			return true;
