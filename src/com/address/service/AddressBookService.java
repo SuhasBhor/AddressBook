@@ -268,8 +268,8 @@ public class AddressBookService {
 		System.out.println("\nTotal Contact In State "+stateName+ " Are: "+count);
 	}
 	
-	//find AddressBook in ArrayList of AddressBook
-	public boolean findAddressBook(String bookName) {
+	//Checking Unique AddressBook in ArrayList of AddressBook
+	public boolean checkUniqueAddressBook(String bookName) {
 		if (AddressBookNameList.isEmpty()) {
 			return true;
 		}
@@ -287,7 +287,7 @@ public class AddressBookService {
 		System.out.println("Enter Address Book Name: ");
 		String bookName = scan.next();
 
-		if (!findAddressBook(bookName)) {
+		if (!checkUniqueAddressBook(bookName)) {
 			System.out.println("This Name Address Book Already Exists");
 		}
 
@@ -303,5 +303,31 @@ public class AddressBookService {
 		for (AddressBookList addressBookName : AddressBookNameList) {
 			System.out.println(addressBookName);
 		}
+	}
+	
+	public void sortByName() {
+		AddressBookList addressBook = findAddressBook();
+		
+		addressBook.contactDetails.stream().sorted((contact1,contact2) ->contact1.getFirstName()
+				.compareTo(contact2.getFirstName()))
+				.forEach(contactDetails -> System.out.println(contactDetails));
+	}
+	
+	public AddressBookList findAddressBook() {
+		if(AddressBookNameList.isEmpty()) {
+			System.out.println("Add AddressBook In Address Book List");
+			return null;
+		}
+		System.out.println("Enter Address Book Name: ");
+		String addressBookName = scan.next();
+		
+		for (AddressBookList addressBookList : AddressBookNameList) {
+			if (addressBookName.equals(addressBookList.bookName)) {
+				return addressBookList;
+			}
+		}
+		System.out.println("This Name Address Book Is Not Exists");
+		return null;
+		
 	}
 }
