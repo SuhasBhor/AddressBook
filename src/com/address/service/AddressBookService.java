@@ -49,7 +49,7 @@ public class AddressBookService {
 				String email = scan.next();
 
 				System.out.print("Enter Your Zip-Code: ");
-				long zip = scan.nextLong();
+				int zip = scan.nextInt();
 
 				System.out.print("Enter Your Phone Number: ");
 				long phoneNumber = scan.nextLong();
@@ -305,14 +305,35 @@ public class AddressBookService {
 		}
 	}
 	
-	public void sortByName() {
+	//Sort Output By Name
+	public void sortByName_City_Zip_State() {
 		AddressBookList addressBook = findAddressBook();
 		
-		addressBook.contactDetails.stream().sorted((contact1,contact2) ->contact1.getFirstName()
-				.compareTo(contact2.getFirstName()))
+		System.out.println("By Which Option You Want To Sort Output:\n1.Sort By Name\n2.Sort By City\n3.Sort By Zip Code"
+				+ "\n4.Sort By Sate");
+		int ch = scan.nextInt();
+		switch(ch) {
+		case 1:
+			addressBook.contactDetails.stream().sorted((contact1,contact2) ->contact1.getFirstName()
+					.compareTo(contact2.getFirstName())).forEach(contactDetails -> System.out.println(contactDetails));
+			break;
+		case 2:
+			addressBook.contactDetails.stream().sorted((contact1,contact2) ->contact1.getCity()
+					.compareTo(contact2.getCity())).forEach(contactDetails -> System.out.println(contactDetails));
+			break;
+		case 3:
+			addressBook.contactDetails.stream().sorted((contact1,contact2) ->
+				Integer.valueOf(contact1.getZip()).compareTo(contact2.getZip()))
 				.forEach(contactDetails -> System.out.println(contactDetails));
+			break;
+		case 4:
+			addressBook.contactDetails.stream().sorted((contact1,contact2) ->contact1.getState()
+					.compareTo(contact2.getState())).forEach(contactDetails -> System.out.println(contactDetails));
+			break;
+		}
 	}
 	
+	//finding AddressBook In Address Book ArrayList
 	public AddressBookList findAddressBook() {
 		if(AddressBookNameList.isEmpty()) {
 			System.out.println("Add AddressBook In Address Book List");

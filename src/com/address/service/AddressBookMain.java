@@ -10,7 +10,7 @@ public class AddressBookMain {
 
 		while (true) {
 			System.out.println("1.Add\n2.Edit\n3.Delete\n4.Find\n5.Add AddressBook\n6.Display AddressBook List\n7.Search Contact By City+"
-					+ "\n8.Search Contact By State\n9.Count Contact In City\n10.Count Contact In State\n11.Sort By Name");
+					+ "\n8.Search Contact By State\n9.Count Contact In City\n10.Count Contact In State\n11.Sort By Name_City_Zip_State");
 			System.out.print("Select Your Option: ");
 			int option = scan.nextInt();
 
@@ -46,7 +46,7 @@ public class AddressBookMain {
 				address.countByState();
 				break;
 			case 11:
-				address.sortByName();
+				address.sortByName_City_Zip_State();
 			default:
 				System.out.println("Enter Option Between 1 To 10");
 			}

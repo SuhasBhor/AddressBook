@@ -8,13 +8,13 @@ public class Contact {
 	public String address;
 	public String city;
 	public String state;
-	public long zip;
+	public int zip;
 	public long phoneNumber;
 	public String email;
 
 	Scanner scan = new Scanner(System.in);
 
-	public Contact(String firstName, String lastName, String address, String city, String state, long zip,
+	public Contact(String firstName, String lastName, String address, String city, String state, int zip,
 			long phoneNumber, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -67,11 +67,11 @@ public class Contact {
 		this.state = state;
 	}
 
-	public long getZip() {
+	public int getZip() {
 		return zip;
 	}
 
-	public void setZip(long zip) {
+	public void setZip(int zip) {
 		this.zip = zip;
 	}
 
