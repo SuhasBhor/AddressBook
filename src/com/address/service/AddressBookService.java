@@ -1,5 +1,10 @@
 package com.address.service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -16,6 +21,9 @@ public class AddressBookService {
 	Contact contact;
 	// ArrayList<Contact> contactBook = new ArrayList<>();
 	ArrayList<AddressBookList> AddressBookNameList = new ArrayList<>();
+	
+	File file = new File("F:/BridgelabzClass/AddressBook/src/com/address/AddressBook.txt");
+
 	
 	//Add Method To Add Contact in ArrayList 
 	public void getContact() {
@@ -349,6 +357,33 @@ public class AddressBookService {
 		}
 		System.out.println("This Name Address Book Is Not Exists");
 		return null;
-		
+	}
+	
+	//Write into File 
+	public void writeContactIntoFile() {
+		FileWriter fileWriter;
+		try {
+			fileWriter = new FileWriter(file);
+			String stringAddressBook = AddressBookNameList.toString();
+			
+			for (int i = 0; i < stringAddressBook.length(); i++) {
+				fileWriter.write(stringAddressBook.charAt(i));
+			}
+			fileWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("\n----Data Insert Into File----\n");
+	}
+	
+	public void readFromFile() throws IOException {
+		System.out.println("\n----Reading Data From File----\n");
+		int line;
+		FileReader fileReader = new FileReader(file);
+		while((line = fileReader.read()) != -1) {
+			System.out.print((char)line);
+		}
+		fileReader.close();
 	}
 }

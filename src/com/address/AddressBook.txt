@@ -1,0 +1,13 @@
+[AddressBook Name: Suhas
+contacts:-[
+
+FirstName = Suhas
+LastName = Bhor
+Address = Marunji
+City = Hnjewadi
+State = MH
+Zip = 123456
+PhoneNumber = 1234567890
+Email = suhas@gmail.com
+--------------------------
+]]
