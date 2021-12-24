@@ -14,6 +14,7 @@ public class AddressBookMain {
 					"1.Add\n2.Edit\n3.Delete\n4.Find\n5.Add AddressBook\n6.Display AddressBook List\n7.Search Contact By City+"
 							+ "\n8.Search Contact By State\n9.Count Contact In City\n10.Count Contact In State\n11.Sort By Name_City_Zip_State\n12.Write Into File"
 							+ "\n13.Read From File\n14.Write Into CSVFile\n15.Read From CSVFile\n16.Write Into GSON File\n17.Read From GSON File");
+
 			System.out.print("Select Your Option: ");
 			int option = scan.nextInt();
 
@@ -76,6 +77,7 @@ public class AddressBookMain {
 				break;
 			default:
 				System.out.println("Enter Option Between 1 To 17");
+
 			}
 		}
 	}
