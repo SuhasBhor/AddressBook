@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -26,11 +28,11 @@ public class AddressBookService {
 	// ArrayList<Contact> contactBook = new ArrayList<>();
 	ArrayList<AddressBookList> AddressBookNameList = AddressBookRegistry.AddressBookNameList;
 	Gson gson = new Gson();
-
-	// txt File path
+	
+	//txt File path
 	File file = new File("F:/BridgelabzClass/AddressBook/src/com/address/AddressBook.txt");
-
-	// CSV File Path
+	
+	//CSV File Path
 	File csvFile = new File("F:/BridgelabzClass/AddressBook/src/com/address/AddressBookCSV.csv");
 	
 	//GSON File Path
@@ -400,19 +402,26 @@ public class AddressBookService {
 			System.out.print((char) line);
 		}
 		fileReader.close();
-	}
+  }
 
 	// Add Contact into CSv File
+
 	public void writeIntoCSVFile() throws IOException {
 		try {
 			FileWriter outputFile = new FileWriter(csvFile);
 			CSVWriter csvWriter = new CSVWriter(outputFile);
-
+			
 			for (AddressBookList addressBookList : AddressBookNameList) {
-				for (Contact person : addressBookList.contactDetails) {
-					String[] contact = { addressBookList.getBookName(), person.getFirstName(), person.getLastName(),
-							person.getAddress(), person.getCity(), person.getState(), String.valueOf(person.getZip()),
-							String.valueOf(person.getPhoneNumber()), person.getEmail() + "\n" };
+				for(Contact person : addressBookList.contactDetails) {
+					String[] contact = {addressBookList.getBookName(),
+							person.getFirstName(),
+							person.getLastName(),
+							person.getAddress(),
+							person.getCity(),
+							person.getState(),
+							String.valueOf(person.getZip()),
+							String.valueOf(person.getPhoneNumber()),
+							person.getEmail()+"\n"};
 					csvWriter.writeNext(contact);
 				}
 			}
@@ -423,7 +432,7 @@ public class AddressBookService {
 			e.printStackTrace();
 		}
 	}
-
+  
 	// Read Contact from CSV File
 	public void readFromCSVFile() throws IOException {
 		FileReader fileReader = new FileReader(csvFile);
