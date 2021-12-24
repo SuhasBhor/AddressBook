@@ -19,9 +19,9 @@ public class AddressBookList {
 		this.bookName = bookName;
 	}
 
-	@Override
-	public String toString() {
-		return "AddressBook Name: " + bookName + "\ncontacts:-" + contactDetails;
-	}
+	/*
+	 * @Override public String toString() { return "AddressBook Name: " + bookName +
+	 * "\ncontacts:-" + contactDetails; }
+	 */
 
 }

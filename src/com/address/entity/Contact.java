@@ -12,7 +12,7 @@ public class Contact {
 	public long phoneNumber;
 	public String email;
 
-	Scanner scan = new Scanner(System.in);
+	public Scanner scan = new Scanner(System.in);
 
 	public Contact(String firstName, String lastName, String address, String city, String state, int zip,
 			long phoneNumber, String email) {
@@ -24,7 +24,6 @@ public class Contact {
 		this.email = email;
 		this.zip = zip;
 		this.phoneNumber = phoneNumber;
-
 	}
 
 	public String getFirstName() {
