@@ -91,10 +91,7 @@ public class Contact {
 	}
 
 	public void getNewFirstName() {
-		System.out.print("Enter Your New Name: ");
-		String newFirstName = scan.next();
-		setFirstName(newFirstName);
-		System.out.println("First Name Updated To " + newFirstName);
+
 	}
 
 	public void getNewLastName() {
@@ -148,9 +145,9 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "\n\nFirstName = " + firstName + "\nLastName = " + lastName + "\nAddress = " + address + "\nCity = " + city
-				+ "\nState = " + state + "\nZip = " + zip + "\nPhoneNumber = " + phoneNumber + "\nEmail = " + email
-				+ "\n--------------------------\n";
+		return "\nContactData:- \nFirstName = " + firstName + "\nLastName = " + lastName + "\nAddress = " + address
+				+ "\nCity = " + city + "\nState = " + state + "\nZip = " + zip + "\nPhoneNumber = " + phoneNumber
+				+ "\nEmail = " + email + "\n--------------------------\n";
 	}
 
 }

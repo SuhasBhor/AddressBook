@@ -8,6 +8,8 @@ public class AddressBookMain {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("------Welcome TO AddressBook------");
 		AddressBookService address = new AddressBookService();
+		AddressBookIO addressBookIO = new AddressBookIO();
+		AddressBookSerachSort addressBookSerachSort = new AddressBookSerachSort();
 
 		while (true) {
 			System.out.println(
@@ -37,42 +39,42 @@ public class AddressBookMain {
 				address.displayAddressBook();
 				break;
 			case 7:
-				address.searchByCity();
+				addressBookSerachSort.searchByCity();
 				break;
 			case 8:
-				address.searchByState();
+				addressBookSerachSort.searchByState();
 				break;
 			case 9:
-				address.countByCity();
+				addressBookSerachSort.countByCity();
 				break;
 			case 10:
-				address.countByState();
+				addressBookSerachSort.countByState();
 				break;
 			case 11:
-				address.sortByName_City_Zip_State();
+				addressBookSerachSort.sortByName_City_Zip_State();
 				break;
 			case 12:
-				address.writeContactIntoFile();
+				addressBookIO.writeContactIntoFile();
 				break;
 			case 13:
 				try {
-					address.readFromFile();
+					addressBookIO.readFromFile();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
 			case 14:
-				address.writeIntoCSVFile();
+				addressBookIO.writeIntoCSVFile();
 				break;
 			case 15:
-				address.readFromCSVFile();
+				addressBookIO.readFromCSVFile();
 				break;
 			case 16:
-				address.writeIntoJSONFile();
+				addressBookIO.writeIntoJSONFile();
 				break;
 			case 17:
-				address.readFromJSONFile();
+				addressBookIO.readFromJSONFile();
 				break;
 			default:
 				System.out.println("Enter Option Between 1 To 17");

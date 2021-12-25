@@ -1,9 +1,5 @@
 package com.address.service;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -14,10 +10,6 @@ import com.address.entity.AddressBookList;
 import com.address.entity.AddressBookRegistry;
 import com.address.entity.Contact;
 import com.address.entity.Name;
-import com.google.gson.Gson;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvValidationException;
 
 public class AddressBookService {
 
@@ -25,16 +17,6 @@ public class AddressBookService {
 	Contact contact;
 	// ArrayList<Contact> contactBook = new ArrayList<>();
 	ArrayList<AddressBookList> AddressBookNameList = AddressBookRegistry.AddressBookNameList;
-	Gson gson = new Gson();
-
-	// txt File path
-	File file = new File("F:/BridgelabzClass/AddressBook/src/com/address/AddressBook.txt");
-
-	// CSV File Path
-	File csvFile = new File("F:/BridgelabzClass/AddressBook/src/com/address/AddressBookCSV.csv");
-	
-	//GSON File Path
-	File gsonFile = new File("F:/BridgelabzClass/AddressBook/src/com/address/AddressBookGSON.json");
 
 	// Add Method To Add Contact in ArrayList
 	public void getContact() {
@@ -79,9 +61,11 @@ public class AddressBookService {
 					for (AddressBookList addressBook : AddressBookNameList) {
 						if (addressBook.bookName.contains(book)) {
 							addressBook.contactDetails.add(contact);
-							for (Contact contact : addressBook.contactDetails) {
-
-							}
+							/*
+							 * for (Contact contact : addressBook.contactDetails) {
+							 * 
+							 * }
+							 */
 						}
 					}
 					System.out.println("\nContact Added Successfully\n");
@@ -214,78 +198,6 @@ public class AddressBookService {
 		}
 	}
 
-	// Search Contact By City Name
-	public void searchByCity() {
-		System.out.println("Enter City Name Whose Contact You Want: ");
-		String cityName = scan.next();
-
-		// Creating A Dictionary of City And Name
-		Dictionary cityDictionary = new Hashtable<>();
-		for (AddressBookList addressBookList : AddressBookNameList) {
-			for (Contact contact : addressBookList.contactDetails) {
-				if (cityName.equals(contact.city)) {
-					cityDictionary.put(contact.firstName, cityName);
-				}
-			}
-		}
-		System.out.println("Contact In City " + cityName);
-		for (Enumeration i = cityDictionary.keys(); i.hasMoreElements();) {
-			System.out.println(i.nextElement());
-		}
-		System.out.println(" ");
-	}
-
-	// Count Contact In particular City
-	public void countByCity() {
-		System.out.println("Enter City Name: ");
-		String cityName = scan.next();
-		int count = 0;
-		for (AddressBookList addressBookList : AddressBookNameList) {
-			for (Contact contact : addressBookList.contactDetails) {
-				if (cityName.equals(contact.city)) {
-					count++;
-				}
-			}
-		}
-		System.out.println("\nTotal Contact In State " + cityName + " Are: " + count);
-	}
-
-	// Search Contact By State
-	public void searchByState() {
-		System.out.println("Enter State Whose Contact You Want: ");
-		String stateName = scan.next();
-
-		// creating Dictionary of State and Name
-		Dictionary stateDictionary = new Hashtable();
-		for (AddressBookList addressBookList : AddressBookNameList) {
-			for (Contact contact : addressBookList.contactDetails) {
-				if (stateName.equals(contact.state)) {
-					stateDictionary.put(contact.firstName, stateName);
-				}
-			}
-		}
-		System.out.println("Contact In State " + stateName);
-		for (Enumeration i = stateDictionary.keys(); i.hasMoreElements();) {
-			System.out.println(i.nextElement());
-		}
-		System.out.println(" ");
-	}
-
-	// Count Contact In particular State
-	public void countByState() {
-		System.out.println("Enter City Name: ");
-		String stateName = scan.next();
-		int count = 0;
-		for (AddressBookList addressBookList : AddressBookNameList) {
-			for (Contact contact : addressBookList.contactDetails) {
-				if (stateName.equals(contact.state)) {
-					count++;
-				}
-			}
-		}
-		System.out.println("\nTotal Contact In State " + stateName + " Are: " + count);
-	}
-
 	// Checking Unique AddressBook in ArrayList of AddressBook
 	public boolean checkUniqueAddressBook(String bookName) {
 		if (AddressBookNameList.isEmpty()) {
@@ -323,38 +235,6 @@ public class AddressBookService {
 		}
 	}
 
-	// Sort Output By Name
-	public void sortByName_City_Zip_State() {
-		AddressBookList addressBook = findAddressBook();
-
-		System.out
-				.println("By Which Option You Want To Sort Output:\n1.Sort By Name\n2.Sort By City\n3.Sort By Zip Code"
-						+ "\n4.Sort By Sate");
-		int ch = scan.nextInt();
-		switch (ch) {
-		case 1:
-			addressBook.contactDetails.stream()
-					.sorted((contact1, contact2) -> contact1.getFirstName().compareTo(contact2.getFirstName()))
-					.forEach(contactDetails -> System.out.println(contactDetails));
-			break;
-		case 2:
-			addressBook.contactDetails.stream()
-					.sorted((contact1, contact2) -> contact1.getCity().compareTo(contact2.getCity()))
-					.forEach(contactDetails -> System.out.println(contactDetails));
-			break;
-		case 3:
-			addressBook.contactDetails.stream()
-					.sorted((contact1, contact2) -> Integer.valueOf(contact1.getZip()).compareTo(contact2.getZip()))
-					.forEach(contactDetails -> System.out.println(contactDetails));
-			break;
-		case 4:
-			addressBook.contactDetails.stream()
-					.sorted((contact1, contact2) -> contact1.getState().compareTo(contact2.getState()))
-					.forEach(contactDetails -> System.out.println(contactDetails));
-			break;
-		}
-	}
-
 	// finding AddressBook In Address Book ArrayList
 	public AddressBookList findAddressBook() {
 		if (AddressBookNameList.isEmpty()) {
@@ -373,98 +253,4 @@ public class AddressBookService {
 		return null;
 	}
 
-	// Write into File
-	public void writeContactIntoFile() {
-		FileWriter fileWriter;
-		try {
-			fileWriter = new FileWriter(file);
-			String stringAddressBook = AddressBookNameList.toString();
-
-			for (int i = 0; i < stringAddressBook.length(); i++) {
-				fileWriter.write(stringAddressBook.charAt(i));
-			}
-			fileWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("\n----Data Insert Into File----\n");
-	}
-
-	// Read data of txt File
-	public void readFromFile() throws IOException {
-		System.out.println("\n----Reading Data From File----\n");
-		int line;
-		FileReader fileReader = new FileReader(file);
-		while ((line = fileReader.read()) != -1) {
-			System.out.print((char) line);
-		}
-		fileReader.close();
-	}
-
-	// Add Contact into CSv File
-	public void writeIntoCSVFile() throws IOException {
-		try {
-			FileWriter outputFile = new FileWriter(csvFile);
-			CSVWriter csvWriter = new CSVWriter(outputFile);
-
-			for (AddressBookList addressBookList : AddressBookNameList) {
-				for (Contact person : addressBookList.contactDetails) {
-					String[] contact = { addressBookList.getBookName(), person.getFirstName(), person.getLastName(),
-							person.getAddress(), person.getCity(), person.getState(), String.valueOf(person.getZip()),
-							String.valueOf(person.getPhoneNumber()), person.getEmail() + "\n" };
-					csvWriter.writeNext(contact);
-				}
-			}
-			csvWriter.close();
-			System.out.println("\n----Data Added To CSV File---\n");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	// Read Contact from CSV File
-	public void readFromCSVFile() throws IOException {
-		FileReader fileReader = new FileReader(csvFile);
-		CSVReader csvReader = new CSVReader(fileReader);
-		System.out.println("\n----Reading From CSVFile----\n");
-		String[] contact;
-		try {
-			while ((contact = csvReader.readNext()) != null) {
-				Contact newContact = new Contact(contact[1], contact[2], contact[3], contact[4], contact[5],
-						Integer.valueOf(contact[6]), Integer.valueOf(contact[7]), contact[8]);
-
-				System.out.println(newContact);
-			}
-		} catch (CsvValidationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	// Write contact into Gson File
-	public void writeIntoJSONFile() throws IOException {
-		//Contact con = new Contact("a", "s", "d", "v", "q", 0, 0L, "w");
-		
-		//Name name = new Name("A", 12);
-		System.out.println(AddressBookNameList);
-		String output = gson.toJson(AddressBookNameList);
-		FileWriter fileWriter = new FileWriter(gsonFile);
-		fileWriter.write(output);
-		fileWriter.close();
-
-		System.out.println("\\n----Data Insert Into JSON File----\\n");
-	}
-	
-	//Read Contact From Gson File
-	public void readFromJSONFile() throws IOException {
-		System.out.println("\n----Reading From JSONFile----\n");
-		FileReader fileReader = new FileReader(gsonFile);
-		Object temp = gson.fromJson(fileReader, Object.class);
-		System.out.println(temp);
-	}
 }
