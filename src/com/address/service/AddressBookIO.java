@@ -8,15 +8,17 @@ import java.io.IOException;
 import com.address.entity.AddressBookList;
 import com.address.entity.Contact;
 import com.google.gson.Gson;
+
+import com.google.gson.GsonBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class AddressBookIO {
 	AddressBookService addressBookService = new AddressBookService();
-	Gson gson = new Gson();
-	
-	//txt File path
+	Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+	// txt File path
 	File file = new File("F:/BridgelabzClass/AddressBook/src/com/address/AddressBook.txt");
 
 	// CSV File Path
@@ -106,9 +108,6 @@ public class AddressBookIO {
 
 	// Write contact into Gson File
 	public void writeIntoJSONFile() throws IOException {
-		//Contact con = new Contact("a", "s", "d", "v", "q", 0, 0L, "w");
-		
-		//Name name = new Name("A", 12);
 		String output = gson.toJson(addressBookService.AddressBookNameList);
 		FileWriter fileWriter = new FileWriter(gsonFile);
 		fileWriter.write(output);
@@ -116,13 +115,13 @@ public class AddressBookIO {
 
 		System.out.println("\\n----Data Insert Into JSON File----\\n");
 	}
-	
-	//Read Contact From Gson File
+
+
+	// Read Contact From Gson File
 	public void readFromJSONFile() throws IOException {
 		System.out.println("\n----Reading From JSONFile----\n");
 		FileReader fileReader = new FileReader(gsonFile);
 		Object temp = gson.fromJson(fileReader, Object.class);
 		System.out.println(temp);
 	}
-
 }

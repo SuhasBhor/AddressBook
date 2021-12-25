@@ -9,13 +9,14 @@ public class AddressBookMain {
 		System.out.println("------Welcome TO AddressBook------");
 		AddressBookService address = new AddressBookService();
 		AddressBookIO addressBookIO = new AddressBookIO();
+		AddressBookSerachSort addressBookSerachSort = new AddressBookSerachSort();
+
 
 		while (true) {
 			System.out.println(
 					"1.Add\n2.Edit\n3.Delete\n4.Find\n5.Add AddressBook\n6.Display AddressBook List\n7.Search Contact By City+"
 							+ "\n8.Search Contact By State\n9.Count Contact In City\n10.Count Contact In State\n11.Sort By Name_City_Zip_State\n12.Write Into File"
 							+ "\n13.Read From File\n14.Write Into CSVFile\n15.Read From CSVFile\n16.Write Into GSON File\n17.Read From GSON File");
-
 			System.out.print("Select Your Option: ");
 			int option = scan.nextInt();
 
@@ -39,19 +40,19 @@ public class AddressBookMain {
 				address.displayAddressBook();
 				break;
 			case 7:
-				address.searchByCity();
+				addressBookSerachSort.searchByCity();
 				break;
 			case 8:
-				address.searchByState();
+				addressBookSerachSort.searchByState();
 				break;
 			case 9:
-				address.countByCity();
+				addressBookSerachSort.countByCity();
 				break;
 			case 10:
-				address.countByState();
+				addressBookSerachSort.countByState();
 				break;
 			case 11:
-				address.sortByName_City_Zip_State();
+				addressBookSerachSort.sortByName_City_Zip_State();
 				break;
 			case 12:
 				addressBookIO.writeContactIntoFile();
