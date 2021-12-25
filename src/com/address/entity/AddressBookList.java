@@ -10,6 +10,14 @@ public class AddressBookList {
 		this.bookName = bookName;
 		this.contactDetails = new ArrayList<Contact>();
 	}
+	
+	public ArrayList<Contact> getContactDetails() {
+		return contactDetails;
+	}
+
+	public void setContactDetails(ArrayList<Contact> contactDetails) {
+		this.contactDetails = contactDetails;
+	}
 
 	public String getBookName() {
 		return bookName;
@@ -19,9 +27,9 @@ public class AddressBookList {
 		this.bookName = bookName;
 	}
 
-	/*
-	 * @Override public String toString() { return "AddressBook Name: " + bookName +
-	 * "\ncontacts:-" + contactDetails; }
-	 */
-
+	@Override 
+	public String toString() { 
+		return "AddressBook Name: " + bookName + "\n"
+							+"contacts:-" + contactDetails; 
+		}
 }

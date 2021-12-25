@@ -148,9 +148,9 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "\n\nFirstName = " + firstName + "\nLastName = " + lastName + "\nAddress = " + address + "\nCity = " + city
-				+ "\nState = " + state + "\nZip = " + zip + "\nPhoneNumber = " + phoneNumber + "\nEmail = " + email
-				+ "\n--------------------------\n";
+		return String.format("\nFirstName = " + getFirstName() + "\nLastName = " + getLastName() + "\nAddress = " + getAddress() + "\nCity = " + getCity()
+				+ "\nState = " + getState() + "\nZip = " + getZip() + "\nPhoneNumber = " + getPhoneNumber() + "\nEmail = " + getEmail()
+				+ "\n--------------------------\n");
 	}
 
 }
